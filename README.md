@@ -1,50 +1,113 @@
-# React + TypeScript + Vite
+# TO-DO List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação de gerenciamento de tarefas (to-do list) que implementa todas as funcionalidades especificadas no desafio para a empresa **[IZI APP](https://izi.app/)**, utilizando tecnologias modernas e uma arquitetura robusta.
 
-Currently, two official plugins are available:
+## 🚀 Sobre o Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A TO-DO List proporciona uma maneira eficiente de gerenciar tarefas, oferecendo funcionalidades como autenticação de usuário, persistência de dados e uma interface de usuário intuitiva e responsiva.
 
-## Expanding the ESLint configuration
+## 🎯 Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Autenticação de usuário utilizando JWT.
+- Registro e login de usuários.
+- CRUD completo de tarefas (Create, Read, Update, Delete).
+- Associação de tarefas aos usuários, onde cada usuário tem sua própria lista de tarefas.
+- Interface de usuário responsiva e amigável.
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠 Tecnologias Utilizadas
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Backend
+
+- **NestJS**
+- **TypeScript**
+- **Prisma**
+- **Docker**
+
+### Frontend
+
+- **React**
+- **TypeScript**
+- **Tanstack Query**
+- **React-Hook-Form**
+- **Zod**
+- **Tailwind**
+- **Shadcn**
+
+## 🔧 Configuração do Ambiente
+
+Este guia fornecerá instruções detalhadas sobre como configurar e rodar o projeto "TO-DO List" localmente. Siga os passos abaixo para ter uma cópia local instalada e funcionando.
+
+### Pré-requisitos
+
+Antes de começar, certifique-se de ter os seguintes softwares instalados:
+
+1. **NPM**: O gerenciador de pacotes do Node.js.
+
+   ```sh
+   npm install npm@latest -g
+   ```
+
+2. **Docker**: Plataforma para desenvolvimento e execução de aplicações em containers.
+
+- **[Docker](https://www.docker.com)**: Para criar e gerenciar containers.
+
+## 📦 Instalação
+Siga os passos abaixo para configurar o ambiente de desenvolvimento local:
+
+### Backend
+1. Clone o repositório
+
+```sh
+git clone https://github.com/Ryan-Costa/backend
+cd backend
 ```
+2. Instale os pacotes NPM
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```sh
+npm install
 ```
+3. Execute o Docker Compose
+
+As informações estão no arquivo .env.example
+
+```sh
+docker compose up
+```
+### Frontend
+1. Navegue até o diretório do frontend
+
+```sh
+git clone https://github.com/Ryan-Costa/frontend
+cd frontend
+```
+2. Instale os pacotes NPM
+
+```sh
+npm install
+```
+3. Inicie o servidor de desenvolvimento
+
+```sh
+npm run dev
+```
+🖼️ Demo
+
+### Homepage
+![image](https://github.com/user-attachments/assets/7147424b-e9b0-4410-be51-24b29aa2b005)
+
+### Login
+![image](https://github.com/user-attachments/assets/9d626902-8c8f-4908-a509-61072be2d520)
+
+### Cadastrar
+![image](https://github.com/user-attachments/assets/7ecba4df-b7b6-4be3-a6b3-053b0505e39a)
+
+### Todos
+![image](https://github.com/user-attachments/assets/6cfa1307-68ce-492e-9879-2a2bce4f8da4)
+
+### Info User + Logout
+![image](https://github.com/user-attachments/assets/aabedf92-7a84-41ff-9482-8c883493a1ce)
+
+
+
+
+<p align="right">(<a href="#readme-top">Voltar para o topo</a>)</p>
