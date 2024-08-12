@@ -3,31 +3,25 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import { Toaster } from "./components/ui/toaster";
 import Todos from "./pages/todos";
-import Layout from "./components/layout";
+import { Toaster } from 'sonner'
 
 const router = createBrowserRouter([
   {
-    path: "/entrar",
-    element: <Login />,
-  },
-  {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/entrar",
+    element: <Login />,
   },
   {
     path: "/cadastrar",
     element: <Register />,
   },
   {
-    element: <Layout />,
-    children: [
-      {
-        path: "/todos",
-        element: <Todos />,
-      },
-    ]
+    path: "/todos",
+    element: <Todos />,
   }
 ])
 
@@ -37,7 +31,7 @@ const App = () => {
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
-      <Toaster />
+      <Toaster richColors position="top-center" />
     </>
   );
 }

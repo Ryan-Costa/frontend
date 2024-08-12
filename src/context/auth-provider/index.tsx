@@ -1,26 +1,16 @@
-import { createContext, useEffect, useState } from 'react';
-import { IAuthProvider, IContext, IUser } from './types';
-import { getUserLocalStorage, LoginRequest, setUserLocalStorage } from './util';
+import { createContext, useState } from 'react';
+import { IAuthProvider, IContext, ISignInData, IUser } from './types';
+import { LoginRequest, setUserLocalStorage } from './util';
 
 export const AuthContext = createContext<IContext>({} as IContext)
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
-    const [user, setUser] = useState<IUser | null>();
+    const [user, setUser] = useState<IUser | null>(null);
 
-    useEffect(() => {
-        const user = getUserLocalStorage()
-
-        if (user) {
-            setUser(user)
-        }
-
-    }, [])
-
-
-    async function authenticate(email: string, password: string) {
+    async function authenticate({ email, password }: ISignInData) {
         const response: IUser = await LoginRequest(email, password)
 
-        const payload = { token: response.access_token, email: response.email };
+        const payload = { access_token: response.access_token, email: response.email };
 
         setUser(payload)
         setUserLocalStorage(payload)

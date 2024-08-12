@@ -1,22 +1,30 @@
 import axios, { AxiosError } from "axios";
 
-import baseUrl from "./apiUrl";
+import baseUrl from "./api-url";
 import { getUserLocalStorage } from "@/context/auth-provider/util";
 
 export const Api = axios.create({
   baseURL: baseUrl,
-
   withCredentials: true,
 });
 
-Api.interceptors.response.use(
-  (response) => {
+Api.interceptors.request.use(
+  (config) => {
     const user = getUserLocalStorage();
 
-    response.config.headers.Authorization = user?.token
+    if (user && user.access_token) {
+      config.headers.Authorization = `Bearer ${user.access_token}`
+    }
 
-    return response
+    return config
   },
+  (error: AxiosError) => {
+    return Promise.reject(error);
+  }
+);
+
+Api.interceptors.response.use(
+  (response) => response,
   (error: AxiosError) => {
     if (error.response?.status === 401) {
       console.log("Redirecionando para a página de login.");

@@ -31,6 +31,9 @@ module.exports = {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        tertiary: {
+          DEFAULT: "hsl(var(--tertiary))",
+        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
@@ -51,6 +54,15 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        searchInput: {
+          DEFAULT: "hsl(var(--search-input))",
+        },
+        searchInputText: {
+          DEFAULT: "hsl(var(--search-input-text))",
+        },
+        deepPurple: {
+          DEFAULT: "hsl(var(--deep-purple))",
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

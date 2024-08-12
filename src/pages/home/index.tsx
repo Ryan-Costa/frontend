@@ -12,13 +12,18 @@ const Home = () => {
 
     return (
         <div className="flex flex-col item-center justify-around p-14 bg-custom-gradient h-screen w-full">
-            <img src="/ontime.svg" alt="logo" />
+            <div className="w-full flex justify-center">
+                <img src="/ontime.svg" alt="logo" className="2xl:w-[200px]" />
+            </div>
 
-            <p className="text-center text-4xl font-light">Make yourself <br />more one time</p>
 
-            <Button size={"lg"} className="bg-white text-black text-2xl font-bold rounded-2xl py-7" onClick={() => handleClickAction()}>
-                {email ? "GO TO TODOS" : "ENTRAR"}
-            </Button>
+            <p className="text-center text-4xl font-light">Crie tarefas <br />rapidamente!</p>
+
+            <div className="flex items-center justify-center">
+                <Button size={"lg"} className="bg-white text-black text-2xl font-bold rounded-2xl py-7 hover:bg-white uppercase" onClick={() => handleClickAction()}>
+                    {email ? "go to todos" : "entrar"}
+                </Button>
+            </div>
         </div>
     );
 }
