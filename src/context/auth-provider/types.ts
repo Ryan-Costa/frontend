@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export interface IUser {
     email?: string;
-    token?: string;
+    access_token?: string;
 }
 
 export interface IContext extends IUser {

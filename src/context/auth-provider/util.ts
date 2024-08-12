@@ -9,7 +9,7 @@ export function getUserLocalStorage() {
     const json = localStorage.getItem('u');
 
     if (!json) {
-        throw new Error('No user data found in localStorage');
+        return null
     }
 
     try {

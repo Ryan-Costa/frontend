@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  .dark {
+  :root {
     --background: 225 9% 9%;
     --foreground: 210 40% 98%;
 
@@ -35,11 +35,11 @@
     --radius: 0.5rem;
   }
 }
-
 @layer base {
   * {
-    @apply border-border antialiased;
+    @apply border-border antialiased p-0;
   }
+
   body {
     @apply bg-background text-foreground;
   }

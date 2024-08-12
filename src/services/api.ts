@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 
 import baseUrl from "./apiUrl";
+import { getUserLocalStorage } from "@/context/auth-provider/util";
 
 export const Api = axios.create({
   baseURL: baseUrl,
@@ -9,12 +10,18 @@ export const Api = axios.create({
 });
 
 Api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    const user = getUserLocalStorage();
+
+    response.config.headers.Authorization = user?.token
+
+    return response
+  },
   (error: AxiosError) => {
     if (error.response?.status === 401) {
       console.log("Redirecionando para a página de login.");
       const previousLocation = window.location.pathname;
-      window.location.href = `/login?redirect=${previousLocation}`;
+      window.location.href = `/entrar?redirect=${previousLocation}`;
     }
     return Promise.reject(error);
   }
