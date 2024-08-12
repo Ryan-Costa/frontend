@@ -1,3 +1,14 @@
+
+<div align="center">
+  <a href="http://nestjs.com/" target="blank">
+    <img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" />
+  </a>
+  
+  <a href="https://reactjs.org/" target="blank">
+    <img src="https://reactnative.dev/img/header_logo.svg" width="200" alt="React Logo" />
+  </a>
+</div>
+
 # TO-DO List
 
 Este projeto é uma aplicação de gerenciamento de tarefas (to-do list) que implementa todas as funcionalidades especificadas no desafio para a empresa **[IZI APP](https://izi.app/)**, utilizando tecnologias modernas e uma arquitetura robusta.
