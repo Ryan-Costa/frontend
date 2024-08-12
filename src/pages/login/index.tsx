@@ -45,9 +45,10 @@ const Login = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="max-w-[350px] flex flex-col gap-4 items-center justify-center">
                 <h1 className="font-bold text-lg">Entrar</h1>
                 <div className="min-w-[250px] flex flex-col gap-3">
-                    <Input placeholder="E-mail" {...register('email', { required: 'E-mail é obrigatório' })} />
+                    <Input className="bg-searchInput border-none text-tertiary outline-none rounded-full placeholder:text-searchInputText" placeholder="E-mail" {...register('email', { required: 'E-mail é obrigatório' })} />
                     {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
                     <Input
+                        className="bg-searchInput border-none text-tertiary outline-none rounded-full placeholder:text-searchInputText"
                         type="password"
                         placeholder="Senha"
                         {...register('password')}
@@ -55,7 +56,7 @@ const Login = () => {
                     {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
                 </div>
                 <div className="max-w-[150px] flex flex-col gap-2 w-full justify-center ">
-                    <Button size="sm" className="w-full bg-white hover:bg-white text-black text-md font-bold uppercase" type="submit">Entrar</Button>
+                    <Button size="sm" className="w-full bg-primary text-white hover:bg-white hover:text-tertiary text-md font-bold uppercase" type="submit">Entrar</Button>
                 </div>
                 <p className="text-sm">Não tem cadastro? Clique <Link to="/cadastrar" className="underline">aqui</Link>!</p>
             </form>

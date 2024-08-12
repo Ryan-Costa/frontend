@@ -20,7 +20,7 @@ const Home = () => {
             <p className="text-center text-4xl font-light">Crie tarefas <br />rapidamente!</p>
 
             <div className="flex items-center justify-center">
-                <Button size={"lg"} className="bg-white text-black text-2xl font-bold rounded-2xl py-7 hover:bg-white uppercase" onClick={() => handleClickAction()}>
+                <Button size={"lg"} className="bg-primary text-white text-2xl font-bold rounded-2xl py-7 hover:bg-white hover:text-tertiary uppercase" onClick={() => handleClickAction()}>
                     {email ? "go to todos" : "entrar"}
                 </Button>
             </div>

@@ -45,22 +45,31 @@ const Register = () => {
                 <h1 className="font-bold text-lg">Cadastrar</h1>
                 <div className="min-w-[250px] flex flex-col gap-3">
                     <Input
+                        className="bg-searchInput border-none text-tertiary outline-none rounded-full placeholder:text-searchInputText"
                         placeholder="E-mail"
                         {...register('email')}
                     />
                     {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
 
-                    <Input placeholder="Nome" {...register('name')} />
+                    <Input
+                        className="bg-searchInput border-none text-tertiary outline-none rounded-full placeholder:text-searchInputText"
+                        placeholder="Nome"
+                        {...register('name')}
+                    />
                     {errors.name && <span className="text-red-500 text-xs">{errors.name.message}</span>}
 
-                    <Input type="passoword" placeholder="Senha" {...register('password')} />
+                    <Input
+                        className="bg-searchInput border-none text-tertiary outline-none rounded-full placeholder:text-searchInputText"
+                        type="passoword" placeholder="Senha"
+                        {...register('password')}
+                    />
                     {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
                 </div>
                 <div className="max-w-[150px] flex flex-col gap-2 w-full justify-center">
                     <Button
                         type="submit"
                         size="sm"
-                        className="w-full bg-white hover:bg-white text-black text-md font-bold uppercase"
+                        className="w-full bg-primary text-white hover:bg-white hover:text-tertiary text-md font-bold uppercase"
                     >
                         Cadastrar
                     </Button>
