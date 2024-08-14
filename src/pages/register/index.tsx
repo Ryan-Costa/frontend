@@ -60,7 +60,7 @@ const Register = () => {
 
                     <Input
                         className="bg-searchInput border-none text-tertiary outline-none rounded-full placeholder:text-searchInputText"
-                        type="passoword" placeholder="Senha"
+                        type="password" placeholder="Senha"
                         {...register('password')}
                     />
                     {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
