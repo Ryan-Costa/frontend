@@ -6,6 +6,9 @@ import TodoList from "@/pages/todos/todo-list";
 import { useState } from "react";
 import { useCreateTodoMutation } from "@/services/mutations/todo/create-todo-mutation";
 import { useTodosQuery } from "@/services/queries/todo";
+import NotFound from "../not-found";
+import ListEmpty from "./list-empty";
+import SkeletonTodos from "@/components/skeleton-todos";
 
 const Todos = () => {
     const [todo, setTodos] = useState('');
@@ -17,12 +20,17 @@ const Todos = () => {
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key !== 'Enter') return;
 
+        const target = event.target as HTMLInputElement
+        target.value = '';
+        event.preventDefault();
+
         createTodoMutation(todo);
+        
     }
-
-    if (isLoading) return 'Carregando...';
-
-    if (isError) return 'Opa, algo deu errado...';
+    
+    if (isError) {
+        return <NotFound />
+    }
 
     return (
         <div className="w-full bg-custom-gradient flex items-center justify-center">
@@ -50,7 +58,8 @@ const Todos = () => {
                     </Button>
                 </div>
 
-                {todos?.length ? <TodoList todos={todos} /> : <h1>No tasks</h1>}
+                {(isLoading) ? <SkeletonTodos /> : (todos?.length) ? <TodoList todos={todos} /> : <ListEmpty missingContent="tarefas"/>}
+
             </div>
         </div >
     );

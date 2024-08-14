@@ -5,6 +5,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Todos from "./pages/todos";
 import { Toaster } from 'sonner'
+import NotFound from "./pages/not-found";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/todos",
     element: <Todos />,
+  },
+  {
+    path: "/not-found",
+    element: <NotFound />,
   }
 ])
 
