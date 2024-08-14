@@ -6,10 +6,9 @@ import { Todo } from "@/types";
 import { useUpdateTodoMutation } from "@/services/mutations/todo/update-todo-mutation";
 import { KeyboardEvent, useState } from "react";
 import { Input } from "@/components/ui/input";
+import { ListTodosProps } from "../type/list-todos-props";
 
-interface ListTodosProps {
-    todos: Todo[];
-}
+
 
 const TodoList = ({ todos }: ListTodosProps) => {
     const [editingTodoId, setEditingTodoId] = useState<number | null>(null);
