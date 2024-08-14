@@ -2,11 +2,11 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../queries/query-client";
 import { todosQuery } from "../../queries/todo";
 import { deleteTodoById } from "../../todo-service";
-import { Todos } from "@/types";
 import { toast } from "sonner";
+import { Todo } from "@/types";
 
 export const useDeleteTodoMutation = () => useMutation({
-  mutationFn: (todo: Todos) => deleteTodoById(todo.id),
+  mutationFn: (todo: Todo) => deleteTodoById(todo.id),
   onMutate: (deletedTodo) => {
     const previousTodos = queryClient.getQueryData(todosQuery.queryKey);
     queryClient.setQueryData(todosQuery.queryKey, (old) => old?.filter(todo => todo.id !== deletedTodo.id))
