@@ -19,7 +19,7 @@ export const useCreateTodoMutation = () => useMutation({
   onSuccess: () => {
     toast.success('Tarefa criada com sucesso!')
   },
-  onError: (_error, _variables, context) => {
+  onError: (_error, _variables, context, ) => {
     queryClient.setQueryData(todosQuery.queryKey, context?.previousTodos)
     toast.error('Erro ao criar tarefa!')
   }

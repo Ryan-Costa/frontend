@@ -9,23 +9,39 @@ import { useTodosQuery } from "@/services/queries/todo";
 import NotFound from "../not-found";
 import ListEmpty from "./list-empty";
 import SkeletonTodos from "@/components/skeleton-todos";
+import { z } from "zod";
+import { toast } from "sonner";
+
+const createTodoSchema = z.object({
+    title: z.string().min(1, 'Título é obrigatório').max(25, 'Título deve ter no máximo 25 caracteres'),
+})
 
 const Todos = () => {
-    const [todo, setTodos] = useState('');
+    const [todo, setTodo] = useState<string>('');
 
     const { data: todos, isLoading, isError } = useTodosQuery()
 
     const { mutate: createTodoMutation } = useCreateTodoMutation();
 
+    const handleCreateTodo = () => {
+        const result = createTodoSchema.safeParse({ title: todo })
+
+        if (!result.success) {
+            toast.error(result.error.errors[0].message);
+            return;
+        }
+
+        createTodoMutation(todo);
+        setTodo('');
+    }
+
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key !== 'Enter') return;
-
         const target = event.target as HTMLInputElement
         target.value = '';
         event.preventDefault();
-
-        createTodoMutation(todo);
-        
+        handleCreateTodo();
+        setTodo('');
     }
     
     if (isError) {
@@ -46,13 +62,13 @@ const Todos = () => {
                             className="bg-searchInput border-none text-searchInputText outline-none"
                             placeholder="Criar tarefa"
                             onKeyUp={handleKeyDown}
-                            onChange={(e) => setTodos(e.target.value)}
+                            onChange={(e) => setTodo(e.target.value)}
                         />
                     </div>
                     <Button
                         size="icon"
                         className="rounded-full p-2 hover:bg-searchInput hover:text-tertiary"
-                        onClick={() => createTodoMutation(todo)}
+                        onClick={handleCreateTodo}
                     >
                         <CornerRightDown />
                     </Button>
