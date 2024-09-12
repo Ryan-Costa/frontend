@@ -24,6 +24,10 @@ const router = createBrowserRouter([
     path: "/todos",
     element: <Todos />,
   },
+  // {
+  //   path: "/todo/:id",
+  //   element: <Todo />,
+  // },
   {
     path: "/not-found",
     element: <NotFound />,

@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { CornerRightDown, Search } from "lucide-react"
 import Header from "@/components/header";
 import TodoList from "@/pages/todos/todo-list";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useCreateTodoMutation } from "@/services/mutations/todo/create-todo-mutation";
 import { useTodosQuery } from "@/services/queries/todo";
 import NotFound from "../not-found";
@@ -23,6 +23,19 @@ const Todos = () => {
 
     const { mutate: createTodoMutation } = useCreateTodoMutation();
 
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        const target = event.target as HTMLInputElement
+        target.value = '';
+        event.preventDefault();
+        handleCreateTodo();
+    }
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key !== 'Enter') return;
+        event.preventDefault();
+        handleCreateTodo();
+    }
+
     const handleCreateTodo = () => {
         const result = createTodoSchema.safeParse({ title: todo })
 
@@ -30,18 +43,9 @@ const Todos = () => {
             toast.error(result.error.errors[0].message);
             return;
         }
-
+         
         createTodoMutation(todo);
-        setTodo('');
-    }
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key !== 'Enter') return;
-        const target = event.target as HTMLInputElement
-        target.value = '';
-        event.preventDefault();
-        handleCreateTodo();
-        setTodo('');
+        setTodo('')
     }
     
     if (isError) {
@@ -61,14 +65,16 @@ const Todos = () => {
                         <Input
                             className="bg-searchInput border-none text-searchInputText outline-none"
                             placeholder="Criar tarefa"
-                            onKeyUp={handleKeyDown}
+                            value={todo}
                             onChange={(e) => setTodo(e.target.value)}
+                            onKeyUp={handleKeyDown}
                         />
                     </div>
                     <Button
                         size="icon"
                         className="rounded-full p-2 hover:bg-searchInput hover:text-tertiary"
-                        onClick={handleCreateTodo}
+                        onClick={handleClick}
+                        disabled={!todo.trim()}
                     >
                         <CornerRightDown />
                     </Button>
